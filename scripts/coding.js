@@ -48,21 +48,24 @@ function randWord(){
     return word;
 }
 function startGame(){
+    game_flag = 0
     do{
         var word = randWord();
         var colour = randColour();
 
-        game_flag = 1;
         console.log(word + " and " + colour);
         document.getElementById("main").innerHTML = word;
         document.getElementById("main").style.color = colour;
-        if(word == colour){
-            alert("Match!");
-            game_flag = 0;
-        }
-        else{
-            alert("Miss!");
-            game_flag = 0;
+        document.onkeydown = function(verify){
+            if((verify.key == "ArrowLeft" && word == colour)
+            || (verify.key == "ArrowRight" && word != colour)){
+                console.log("Correct!");
+                game_flag = 0;
+            }
+            else if((verify.key == "ArrowLeft" && word != colour)
+                || (verify.key == "ArrowRight" && word == colour)){
+                    console.log("Incorrect!");
+            }
         }
     } while(game_flag != 0);
 }
