@@ -8,9 +8,15 @@
         
          #main{-webkit-text-stroke: 1px black; font-size: 100px;}
     </style>
+
+<audio id="press" src="/audio/press.mp3"></audio>
+<audio id="fail" src="/audio/fail.mp3"></audio>
+
+
     <body onload="startGame()">
         <p id="main">Press enter to start</p>
         <button type="button" id="buttonleft" onclick="startGame()">left</button>
         <button type="button" id="buttonright" onclick="startGame()">right</button>
+        <p id="timer" onload="showTimer()">Timer:</p>
     </body>
 </html>

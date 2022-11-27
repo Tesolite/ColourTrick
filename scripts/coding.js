@@ -114,15 +114,45 @@ function verifyRound(input, round) {
 }
 
 function startGame() {
+    const start = Date.now();
+    setInterval(() => {
+        timer = 60 -(Date.now() - start) / 1000;
+        document.getElementById("timer").innerHTML = parseFloat(timer).toFixed(2);
+        if(timer < 0){
+            document.getElementById("timer").innerHTML = 0;
+        }
+    }, 25);
+
     var round = createRound();
     var word = round[0];
     var colour = round[1];
     score = 0
     console.log(word + colour);
     var continueGame = 1;
+
+
+    var feedback = document.getElementById("press");
+    feedback.volume = 0.25;
+
+    var lose = document.getElementById("fail");
+    lose.volume = 0.25;
+
+
+
+    
     if (continueGame == 1) {
         document.addEventListener("keydown", function registerInput(input) {
+            if(timer < 0){
+                lose.play();
+                word = "GAME OVER";
+                colour = "red";
+                document.getElementById("main").innerHTML = word;
+                document.getElementById("main").style.color = colour;
+                alert("GAME OVER. NO TIME LEFT");
+                document.removeEventListener("keydown", registerInput, true)
+            }
             if (input.key == "ArrowLeft" || input.key == "ArrowRight") {
+                feedback.play();
                 if (verifyRound(input.key, round) == true) {
                     score++;
                     round = createRound();
@@ -130,17 +160,16 @@ function startGame() {
                     colour = round[1];
                 }
                 else {
-                    alert("GAME OVER, FINAL SCORE: " + score);
-                    continueGame = 0;
+                    lose.play();
                     word = "GAME OVER";
                     colour = "red";
-                    score = 0;
+                    document.getElementById("main").innerHTML = word;
+                    document.getElementById("main").style.color = colour;   
+                    alert("GAME OVER, FINAL SCORE: " + score);
+                    continueGame = 0;
                     document.removeEventListener("keydown", registerInput, true)
                 }
             }
         }, true);
-    }
-    else {
-        
     }
 }
