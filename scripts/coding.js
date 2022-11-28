@@ -115,7 +115,6 @@ function startGame() {
             document.getElementById("timer").innerHTML = 0;
         }
     }, 25);
-
     var round = createRound();
     var word = round[0];
     var colour = round[1];
@@ -152,6 +151,7 @@ function startGame() {
                     console.log(round);
                     word = round[0];
                     colour = round[1];
+                    document.getElementById("score").innerHTML = "Score: " + score;
                 }
                 else {
                     lose.play();
@@ -168,4 +168,9 @@ function startGame() {
             }
         }, true);
     }
+}
+
+function enterGame(){
+    document.getElementById("btnstart").onclick = window.location.href = "game.html";
+
 }

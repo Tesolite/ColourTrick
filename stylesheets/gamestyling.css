@@ -1,0 +1,108 @@
+* {
+    font-size: 100%;
+    font-family: "Lucida Console";
+}
+
+
+.grid-container {
+    max-width: 100%;
+    max-height: 100%;
+    display: grid;
+    grid-template-rows: 25% 50% 25%;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.gamespace{
+    margin: 0px;
+    align-items: center;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    background-color: white;
+}
+
+.timerspace{
+    grid-column: 3;
+    grid-row-start: 1;
+}
+
+.scorespace{
+    grid-column: 1;
+    grid-row-start: 1;
+    align-items:flex-end;
+}
+
+#main {
+
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px;
+    margin: 0px;
+    padding: 10%;
+
+}
+
+#timer{
+    animation: rainbowz 10s infinite;
+    text-align:left;
+}
+
+#score {
+    text-align: right;
+}
+
+#guideMatch{
+    grid-column-start: 2;
+    grid-row-start: 3;
+    text-align: left;
+    font-size: 30px;
+}
+#guideDifference{
+    grid-column-start: 2;
+    grid-row-start: 3;
+    text-align: right;
+    font-size: 30px;
+}
+
+
+
+
+@keyframes changeColour {
+    from {
+        background-color: inherit, inherit, inherit, 0.75;
+    }
+
+    to {
+        background-color: rgb(116, 116, 116);
+    }
+}
+
+@keyframes rainbowz {
+    0% {color: red;}
+    7% {color: orange;}
+    15% {color: yellow;}
+    22% {color: rgb(7, 219, 7);}
+    30% {color: rgb(0, 153, 255);}
+    37% {color: rgb(255, 0, 221);}
+    45% {color: violet;}
+    53% {color: violet;}
+    60% {color: rgb(255, 0, 221);}
+    67% {color: rgb(0, 153, 255);}
+    75% {color: rgb(7, 219, 7);}
+    83% {color: yellow;}
+    91% {color: orange;}
+    100% {color: red;}
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    max-width: 100%;
+    overflow-x: hidden;
+}
