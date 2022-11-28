@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheets/styling.css" type="text/css" id="webstyle"/>
+    <script src="scripts/coding.js"></script>
+</head>
+
+<body>
+    <div class="grid-container">
+        
+        <div class="navigation">
+            <nav id="navbar">
+            </nav>
+        </div>
+        <div class="content">
+                <button type="button" id="btnstart" class="menubuttons" onclick="startQuiz()">Start Game!</button>
+                <button type="button" id="btnoptions" class="menubuttons" onclick="showOptions()">Profile</button>
+                <button type="button" id="btnmystery" class="menubuttons" onclick="colourfulSecret()">Leaderboards</button>
+        </div>
+        <div id="options" style="display: none;">
+            <form class="settings">
+                <input type="checkbox" id="dyslexia">
+                <label for="dyslexia">Dyslexic font</label><br>
+                <input type="checkbox" id="darkmode">
+                <label for="darkmode">Dark mode</label><br>
+                <button type="button" id="saveoptions" onclick="saveOptions()">Save</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 function randColour() {
-    var random = Math.floor(Math.random() * 6);
+    var random = Math.floor(Math.random() * 7);
     colour = "";
 
     if (random == 0) {
@@ -18,13 +18,16 @@ function randColour() {
         colour = "blue";
     }
     else if (random == 5) {
-        colour = "purple";
+        colour = "pink";
+    }
+    else if (random == 6){
+        colour = "cyan";
     }
     return colour;
 }
 
 function randWord() {
-    var random = Math.floor(Math.random() * 6);
+    var random = Math.floor(Math.random() * 7);
     word = "";
 
     if (random == 0) {
@@ -43,26 +46,15 @@ function randWord() {
         word = "blue";
     }
     else if (random == 5) {
-        word = "purple";
+        word = "pink";
+    }
+    else if (random == 6){
+        word = "cyan";
     }
     return word;
 }
 
-function testing() {
-    var word = randWord();
-    var colour = randColour();
-
-    return [colour, word];
-}
-
-function recordKey(key) {
-    if (key.key == "ArrowLeft") {
-        console.log("Hello ");
-    }
-    else (console.log("World!"));
-}
-
-async function gameRound() {
+function gameRound() {
     round_flag = 1;
     var word = randWord();
     var colour = randColour();
@@ -115,6 +107,7 @@ function verifyRound(input, round) {
 
 function startGame() {
     const start = Date.now();
+    finaltime = 0;
     setInterval(() => {
         timer = 60 -(Date.now() - start) / 1000;
         document.getElementById("timer").innerHTML = parseFloat(timer).toFixed(2);
@@ -156,11 +149,14 @@ function startGame() {
                 if (verifyRound(input.key, round) == true) {
                     score++;
                     round = createRound();
+                    console.log(round);
                     word = round[0];
                     colour = round[1];
                 }
                 else {
                     lose.play();
+                    finaltime = timer;
+                    document.getElementById("timer").innerHTML = finaltime;
                     word = "GAME OVER";
                     colour = "red";
                     document.getElementById("main").innerHTML = word;
