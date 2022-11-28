@@ -84,6 +84,11 @@ function createRound() {
     document.getElementById("main").innerHTML = word;
     document.getElementById("main").style.color = colour;
 
+    //Procedure for restarting animation derived from CSS-TRICKS website (https://css-tricks.com/restart-css-animation/)
+    document.getElementById("main").classList.remove("playNewComboAnimation");
+    document.getElementById("main").offsetWidth;
+    document.getElementById("main").classList.add("playNewComboAnimation");
+
     return [word, colour];
 }
 
