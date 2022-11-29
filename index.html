@@ -3,31 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylesheets/styling.css" type="text/css" id="webstyle"/>
+    <link rel="stylesheet" href="stylesheets/styling.css" type="text/css" id="webstyle" />
     <script src="scripts/coding.js"></script>
 </head>
 
-<body>
+<body onload="checkUser()">
     <div class="grid-container">
-        
+
         <div class="navigation">
             <nav id="navbar">
             </nav>
         </div>
         <div class="content">
-                <button type="button" id="btnstart" class="menubuttons" onclick="enterGame()">Start Game!</button>
-                <button type="button" id="btnoptions" class="menubuttons" onclick="">Profile</button>
-                <button type="button" id="btnmystery" class="menubuttons" onclick="">Leaderboards</button>
+            <button type="button" id="btnstart" class="menubuttons" onclick="enterGame()">Start Game!</button>
+            <button type="button" id="btnprofile" class="menubuttons" onclick="showProfile()">Profile</button>
+            <button type="button" id="btnlb" class="menubuttons" onclick="">Leaderboards</button>
         </div>
-        <div id="options" style="display: none;">
-            <form class="settings">
-                <input type="checkbox" id="dyslexia">
-                <label for="dyslexia">Dyslexic font</label><br>
-                <input type="checkbox" id="darkmode">
-                <label for="darkmode">Dark mode</label><br>
-                <button type="button" id="saveoptions" onclick="saveOptions()">Save</button>
+        <div id="newUserWindow" style="display: none;">
+            <form class="newUserPrompt">
+                <p><span id="newUserText">New user</span> detected!</p>
+                <p>
+                <p>Please enter a unique username to track your highscore!</p>
+                <p id="usernameCriteria">14 characters max, no symbols</p>
+                <input type="text" id="usernameInput" placeholder="Enter username...">
+                <button type="submit" id="saveUsername" onclick="getUsername()">Set Username</button>
             </form>
+        </div>
 
+        <div id="userProfile" style="display: none;">
+            <p id="profileUsername">User ID: </p>
+            <p id="profileHighscore">Highscore: </p>
+            <p id="profileRank">Rank: </p>
+            <button type="button" id="clearData" onclick="clearUserData()">CLEAR DATA</button>
         </div>
     </div>
 </body>

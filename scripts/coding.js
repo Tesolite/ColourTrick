@@ -1,6 +1,61 @@
+function checkUser(){
+    if(localStorage.getItem("username") == null){
+        document.getElementById("newUserWindow").style.display = "initial";
+    }
+}
+
+function getUsername(){
+    var user = document.getElementById("usernameInput").value;
+
+    //Credit to Borislav Hadzhiev for creating this special character array (https://bobbyhadz.com/blog/javascript-check-if-string-contains-special-characters)
+    let specialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    
+    if(user.length < 1){
+        alert("Username can't be empty!");
+    }
+    else if(specialChar.test(user) == true){
+        alert("Username can't have special characters!");
+    }
+    else if(user.length > 14){
+        alert("Username can't be longer than 14 characters!");
+    }
+    else{
+        alert(user);
+        localStorage.setItem("username",user);
+    }
+}
+
+function showProfile(){
+    document.getElementById("userProfile").style.display = "initial";
+    document.getElementById("profileUsername").innerHTML = document.getElementById("profileUsername").innerHTML + localStorage.getItem("username");
+
+    if(localStorage.getItem("score") == null){
+        document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + "0";
+    }
+    else{
+    document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + localStorage.getItem("score");
+    }
+    
+}
+
+function clearUserData(){
+    var confirmation = prompt("Are you sure you want to clear all user data? Type 'CONFIRMCLEARDATA' to confirm.");
+    if(confirmation == "CONFIRMCLEARDATA"){
+        localStorage.clear();
+        alert("All user data cleared.");
+    }
+    else{
+        alert("Input does not match prompt. Data clearing cancelled.")
+    }
+}
+
+
+
+
+
 function randColour() {
     var random = Math.floor(Math.random() * 7);
-    colour = "";
+    var colour = "";
 
     if (random == 0) {
         colour = "red";
@@ -28,7 +83,7 @@ function randColour() {
 
 function randWord() {
     var random = Math.floor(Math.random() * 7);
-    word = "";
+    var word = "";
 
     if (random == 0) {
         word = "red";
@@ -113,6 +168,7 @@ function verifyRound(input, round) {
 function startGame() {
     document.getElementById("score").innerHTML = "Score: 0";
     document.getElementById("retryButton").style.display = "none";
+    document.getElementById("homeButton").style.display = "none";
     document.getElementById("timer").style.fontSize = "50px";
     document.getElementById("timer").classList.remove("playNoTimeAnimation");
 
@@ -187,6 +243,8 @@ function startGame() {
                     continueGame = 0;
                     document.removeEventListener("keydown", registerInput, true);
                     document.getElementById("retryButton").style.display = "initial";
+                    document.getElementById("homeButton").style.display = "initial";
+                    alert(localStorage.getItem("username") + " highscore: " + localStorage.getItem("score"));
                 }
             }
         }, true);
@@ -195,5 +253,9 @@ function startGame() {
 
 function enterGame() {
     document.getElementById("btnstart").onclick = window.location.href = "game.html";
+
+}
+function goHome() {
+    document.getElementById("btnstart").onclick = window.location.href = "index.html";
 
 }

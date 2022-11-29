@@ -16,6 +16,7 @@
         -webkit-text-stroke: 1px black;
         font-size: 50px;
     }
+
     #score {
         -webkit-text-stroke: 1px black;
         font-size: 50px;
@@ -30,7 +31,13 @@
     <div class="grid-container">
         <div class="gamespace">
             <p id="main">Game</p>
-            <button type="button" id="retryButton" class="gamebuttons" style="display: none;" onclick="startGame();">Retry</button>
+            <div class="buttonsSpace">
+                <button type="button" id="homeButton" class="gamebuttons" style="display: none;"
+                    onclick="goHome();">Home</button>
+                <button type="button" id="retryButton" class="gamebuttons" style="display: none;"
+                    onclick="startGame();">Retry</button>
+
+            </div>
         </div>
         <div class="timerspace">
             <p id="timer">Timer:</p>
