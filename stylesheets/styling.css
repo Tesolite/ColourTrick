@@ -88,6 +88,33 @@
     background: rgb(109, 109, 109);
 }
 
+@keyframes changeColour {
+    from {
+        background-color: inherit, inherit, inherit, 0.75;
+    }
+
+    to {
+        background-color: rgb(116, 116, 116);
+    }
+}
+
+@keyframes rainbowz {
+    0% {color: red;}
+    7% {color: orange;}
+    15% {color: yellow;}
+    22% {color: rgb(7, 219, 7);}
+    30% {color: rgb(0, 153, 255);}
+    37% {color: rgb(255, 0, 221);}
+    45% {color: violet;}
+    53% {color: violet;}
+    60% {color: rgb(255, 0, 221);}
+    67% {color: rgb(0, 153, 255);}
+    75% {color: rgb(7, 219, 7);}
+    83% {color: yellow;}
+    91% {color: orange;}
+    100% {color: red;}
+}
+
 html, body {
     margin: 0;
     height: 100%;

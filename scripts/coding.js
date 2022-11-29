@@ -20,7 +20,7 @@ function randColour() {
     else if (random == 5) {
         colour = "pink";
     }
-    else if (random == 6){
+    else if (random == 6) {
         colour = "cyan";
     }
     return colour;
@@ -48,7 +48,7 @@ function randWord() {
     else if (random == 5) {
         word = "pink";
     }
-    else if (random == 6){
+    else if (random == 6) {
         word = "cyan";
     }
     return word;
@@ -95,7 +95,7 @@ function createRound() {
 function verifyRound(input, round) {
     var word = round[0];
     var colour = round[1];
-    validFlag = 0;
+    var validFlag = 0;
     if ((input == "ArrowLeft" && word == colour)
         || (input == "ArrowRight" && word != colour)) {
         console.log("Correct!");
@@ -111,35 +111,38 @@ function verifyRound(input, round) {
 }
 
 function startGame() {
+    document.getElementById("retryButton").style.display = "none";
     const start = Date.now();
-    finaltime = 0;
-    setInterval(() => {
-        timer = 60 -(Date.now() - start) / 1000;
+    var timer;
+    var finaltime = 0;
+    const timerInterval = setInterval(() => {
+        timer = 60 - (Date.now() - start) / 1000;
         document.getElementById("timer").innerHTML = parseFloat(timer).toFixed(2);
-        if(timer < 0){
+        if (timer < 0) {
             document.getElementById("timer").innerHTML = 0;
         }
     }, 25);
+
     var round = createRound();
     var word = round[0];
     var colour = round[1];
-    score = 0
+    var score = 0
     console.log(word + colour);
     var continueGame = 1;
 
 
-    var feedback = document.getElementById("press");
+    const feedback = document.getElementById("press");
     feedback.volume = 0.25;
 
-    var lose = document.getElementById("fail");
+    const lose = document.getElementById("fail");
     lose.volume = 0.25;
 
 
 
-    
+
     if (continueGame == 1) {
         document.addEventListener("keydown", function registerInput(input) {
-            if(timer < 0){
+            if (timer < 0) {
                 lose.play();
                 word = "GAME OVER";
                 colour = "red";
@@ -160,22 +163,24 @@ function startGame() {
                 }
                 else {
                     lose.play();
-                    finaltime = timer;
+                    finaltime = parseFloat(timer).toFixed(2);
+                    clearInterval(timerInterval);
                     document.getElementById("timer").innerHTML = finaltime;
                     word = "GAME OVER";
                     colour = "red";
                     document.getElementById("main").innerHTML = word;
-                    document.getElementById("main").style.color = colour;   
+                    document.getElementById("main").style.color = colour;
                     alert("GAME OVER, FINAL SCORE: " + score);
                     continueGame = 0;
-                    document.removeEventListener("keydown", registerInput, true)
+                    document.removeEventListener("keydown", registerInput, true);
+                    document.getElementById("retryButton").style.display = "initial";
                 }
             }
         }, true);
     }
 }
 
-function enterGame(){
+function enterGame() {
     document.getElementById("btnstart").onclick = window.location.href = "game.html";
 
 }

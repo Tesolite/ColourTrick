@@ -15,12 +15,30 @@
     height: 100%;
 }
 
+.gamebuttons {
+    margin: 50px;
+    padding: 25px 50px;
+    color: black;
+    background-color: white;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.gamebuttons:hover {
+    background: linear-gradient(rgba(231, 241, 246, 0.05), rgba(68, 67, 67, 0.75));
+    animation: changeColour 0.25s, changeTextWhite 0.25s;
+    animation-fill-mode: forwards;
+}
+
 .gamespace{
-    margin: 0px;
     align-items: center;
     grid-column-start: 2;
     grid-row-start: 2;
+    grid-column: 2;
+    grid-row-end: 2;
     background-color: white;
+    display: flex;  
+    flex-direction: column;
 }
 
 .timerspace{
@@ -42,6 +60,11 @@
     margin: 0px;
     padding: 10%;
 
+}
+
+#retry{
+    text-align:center;
+    margin: 0;
 }
 
 #timer{
@@ -71,8 +94,6 @@
 }
 
 
-
-
 @keyframes changeColour {
     from {
         background-color: inherit, inherit, inherit, 0.75;
@@ -80,6 +101,15 @@
 
     to {
         background-color: rgb(116, 116, 116);
+    }
+}
+
+@keyframes changeTextWhite{
+    from{
+        color: black;
+    }
+    to{
+        color:white;
     }
 }
 
