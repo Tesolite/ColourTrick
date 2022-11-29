@@ -22,6 +22,18 @@
     grid-column-end: 5;
 }
 
+#navbar {
+    display: flex;
+    justify-content: left;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    position: relative;
+    top: 2%;
+    left: 0.5%;
+    width: 100%;
+    margin-bottom: 3%;
+}
+
 .content {
     grid-column-start: 2;
     background-color: rgba(92, 91, 91, 0.582);

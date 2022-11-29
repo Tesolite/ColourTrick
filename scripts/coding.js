@@ -1,50 +1,56 @@
-function checkUser(){
-    if(localStorage.getItem("username") == null){
+function checkUser() {
+    if (localStorage.getItem("username") == null) {
         document.getElementById("newUserWindow").style.display = "initial";
     }
 }
 
-function getUsername(){
+function getUsername() {
     var user = document.getElementById("usernameInput").value;
 
     //Credit to Borislav Hadzhiev for creating this special character array (https://bobbyhadz.com/blog/javascript-check-if-string-contains-special-characters)
     let specialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    
-    if(user.length < 1){
+
+    if (user.length < 1) {
         alert("Username can't be empty!");
     }
-    else if(specialChar.test(user) == true){
+    else if (specialChar.test(user) == true) {
         alert("Username can't have special characters!");
     }
-    else if(user.length > 14){
+    else if (user.length > 14) {
         alert("Username can't be longer than 14 characters!");
     }
-    else{
-        alert(user);
-        localStorage.setItem("username",user);
+    else {
+        localStorage.setItem("username", user);
     }
 }
 
-function showProfile(){
-    document.getElementById("userProfile").style.display = "initial";
-    document.getElementById("profileUsername").innerHTML = document.getElementById("profileUsername").innerHTML + localStorage.getItem("username");
+function showProfile() {
 
-    if(localStorage.getItem("highscore") == null){
-        document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + "0";
+    if (localStorage.getItem("username") == null) {
+        alert("Make a profile first!");
     }
-    else{
-    document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + localStorage.getItem("highscore");
+    else {
+        document.getElementById("userProfile").style.display = "initial";
+        document.getElementById("profileUsername").innerHTML = document.getElementById("profileUsername").innerHTML + localStorage.getItem("username");
+
+        if (localStorage.getItem("highscore") == null) {
+            document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + "0";
+        }
+        else {
+            document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + localStorage.getItem("highscore");
+        }
     }
-    
+
 }
 
-function clearUserData(){
+function clearUserData() {
     var confirmation = prompt("Are you sure you want to clear all user data? Type 'CONFIRMCLEARDATA' to confirm.");
-    if(confirmation == "CONFIRMCLEARDATA"){
+    if (confirmation == "CONFIRMCLEARDATA") {
         localStorage.clear();
         alert("All user data cleared.");
+        location.reload();
     }
-    else{
+    else {
         alert("Input does not match prompt. Data clearing cancelled.")
     }
 }
@@ -114,18 +120,15 @@ function gameRound() {
     var word = randWord();
     var colour = randColour();
 
-    console.log(word + " and " + colour);
     document.getElementById("main").innerHTML = word;
     document.getElementById("main").style.color = colour;
     document.addEventListener("keydown"), function (input) {
         if ((input.key == "ArrowLeft" && word == colour)
             || (input.key == "ArrowRight" && word != colour)) {
-            console.log("Correct!");
             round_flag = 1;
         }
         else if ((input.key == "ArrowLeft" && word != colour)
             || (input.key == "ArrowRight" && word == colour)) {
-            console.log("Incorrect!");
             round_flag = 0;
         }
     }
@@ -153,15 +156,14 @@ function verifyRound(input, round) {
     var validFlag = 0;
     if ((input == "ArrowLeft" && word == colour)
         || (input == "ArrowRight" && word != colour)) {
-        console.log("Correct!");
+
         validFlag = 1;
     }
     else if ((input == "ArrowLeft" && word != colour)
         || (input == "ArrowRight" && word == colour)) {
-        console.log("Incorrect!");
         validFlag = 0;
     }
-    console.log(validFlag);
+
     return validFlag;
 }
 
@@ -176,7 +178,7 @@ function startGame() {
     var word = round[0];
     var colour = round[1];
     var score = 0
-    console.log(word + colour);
+
     var continueGame = 1;
 
     //Sounds for pressing and game loss
@@ -188,7 +190,7 @@ function startGame() {
     //
 
 
-    
+
     const start = Date.now();
     var timer;
     var finaltime = 0;
@@ -217,7 +219,6 @@ function startGame() {
                 if (verifyRound(input.key, round) == true && continueGame == 1) {
                     score++;
                     round = createRound();
-                    console.log(round);
                     word = round[0];
                     colour = round[1];
                     document.getElementById("score").innerHTML = "Score: " + score;
@@ -231,20 +232,18 @@ function startGame() {
                     colour = "red";
                     document.getElementById("main").innerHTML = word;
                     document.getElementById("main").style.color = colour;
-                    if(localStorage.getItem("highscore") == null){
-                        localStorage.setItem("highscore",score);
+                    if (localStorage.getItem("highscore") == null) {
+                        localStorage.setItem("highscore", score);
                     }
-                    else{
-                        if(localStorage.getItem("highscore") < score){
+                    else {
+                        if (localStorage.getItem("highscore") < score) {
                             localStorage.setItem("highscore", score);
                         }
                     }
-                    alert("Highscore is: " + localStorage.getItem("highscore"));
                     continueGame = 0;
                     document.removeEventListener("keydown", registerInput, true);
                     document.getElementById("retryButton").style.display = "initial";
                     document.getElementById("homeButton").style.display = "initial";
-                    alert(localStorage.getItem("username") + " highscore: " + localStorage.getItem("highscore"));
                 }
             }
         }, true);
