@@ -111,17 +111,10 @@ function verifyRound(input, round) {
 }
 
 function startGame() {
+    document.getElementById("score").innerHTML = "Score: 0";
     document.getElementById("retryButton").style.display = "none";
-    const start = Date.now();
-    var timer;
-    var finaltime = 0;
-    const timerInterval = setInterval(() => {
-        timer = 60 - (Date.now() - start) / 1000;
-        document.getElementById("timer").innerHTML = parseFloat(timer).toFixed(2);
-        if (timer < 0) {
-            document.getElementById("timer").innerHTML = 0;
-        }
-    }, 25);
+    document.getElementById("timer").style.fontSize = "50px";
+    document.getElementById("timer").classList.remove("playNoTimeAnimation");
 
     var round = createRound();
     var word = round[0];
@@ -130,12 +123,30 @@ function startGame() {
     console.log(word + colour);
     var continueGame = 1;
 
-
+    //Sounds for pressing and game loss
     const feedback = document.getElementById("press");
     feedback.volume = 0.25;
 
     const lose = document.getElementById("fail");
     lose.volume = 0.25;
+    //
+
+
+    
+    const start = Date.now();
+    var timer;
+    var finaltime = 0;
+    const timerInterval = setInterval(() => {
+        timer = 60 - (Date.now() - start) / 1000;
+        document.getElementById("timer").innerHTML = parseFloat(timer).toFixed(2);
+        if (timer < 0) {
+            timer = 0;
+            document.getElementById("timer").innerHTML = "0.00";
+            document.getElementById("timer").style.fontSize = "100px";
+            document.getElementById("timer").classList.add("playNoTimeAnimation");
+            continueGame = 0;
+        }
+    }, 25);
 
 
 
@@ -143,17 +154,11 @@ function startGame() {
     if (continueGame == 1) {
         document.addEventListener("keydown", function registerInput(input) {
             if (timer < 0) {
-                lose.play();
-                word = "GAME OVER";
-                colour = "red";
-                document.getElementById("main").innerHTML = word;
-                document.getElementById("main").style.color = colour;
-                alert("GAME OVER. NO TIME LEFT");
-                document.removeEventListener("keydown", registerInput, true)
+                continueGame = 0;
             }
             if (input.key == "ArrowLeft" || input.key == "ArrowRight") {
                 feedback.play();
-                if (verifyRound(input.key, round) == true) {
+                if (verifyRound(input.key, round) == true && continueGame == 1) {
                     score++;
                     round = createRound();
                     console.log(round);
@@ -170,7 +175,15 @@ function startGame() {
                     colour = "red";
                     document.getElementById("main").innerHTML = word;
                     document.getElementById("main").style.color = colour;
-                    alert("GAME OVER, FINAL SCORE: " + score);
+                    if(localStorage.getItem("score") == null){
+                        localStorage.setItem("score",score);
+                    }
+                    else{
+                        if(localStorage.getItem("score") < score){
+                            localStorage.setItem("score", score);
+                        }
+                    }
+                    alert("Highscore is: " + localStorage.getItem("score"));
                     continueGame = 0;
                     document.removeEventListener("keydown", registerInput, true);
                     document.getElementById("retryButton").style.display = "initial";

@@ -68,7 +68,6 @@
 }
 
 #timer{
-    animation: rainbowz 10s infinite;
     text-align:left;
 }
 
@@ -91,6 +90,10 @@
 
 .playNewComboAnimation{
     animation: newCombo 0.1s;
+}
+
+.playNoTimeAnimation{
+    animation: noTime 0.75s infinite;
 }
 
 
@@ -137,6 +140,13 @@
     100%{ transform: scale(1,1); }
 
 }
+
+@keyframes noTime {
+    0% {color: black;}
+    50%{color: red;}
+    100% {color: black;}
+}
+
 
 html, body {
     margin: 0;

@@ -20,12 +20,11 @@
 
 .content {
     grid-column-start: 2;
-    background-color: rgba(255, 255, 255, 0.582);
+    background-color: rgba(92, 91, 91, 0.582);
     display: flex;
     width: auto;
     height: auto;
     flex-direction: column;
-    border-radius: 15px;
     border: 2px solid rgba(0, 0, 0, 0.25);
     box-shadow: 0px 0px 13px 7px rgba(0, 0, 0, 0.10);
 
@@ -35,12 +34,11 @@
 .menubuttons {
     margin: 50px;
     padding: 25px 50px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(153, 149, 149);
+    color: black;
+    background-color: white;
     font-size: 30px;
     text-align: center;
     cursor: pointer;
-    border-radius: 10px;
 }
 
 #options {
@@ -80,7 +78,7 @@
 
 .menubuttons:hover {
     background: linear-gradient(rgba(231, 241, 246, 0.05), rgba(68, 67, 67, 0.75));
-    animation: changeColour 0.25s, rainbowz 10s infinite;
+    animation: changeColour 1s, changeTextWhite 0.25s, rainbowzBorders 10s infinite;
     animation-fill-mode: forwards;
 }
 
@@ -94,8 +92,34 @@
     }
 
     to {
-        background-color: rgb(116, 116, 116);
+        background-color: rgb(20, 20, 20);
     }
+}
+
+@keyframes changeTextWhite{
+    from{
+        color: black;
+    }
+    to{
+        color:white;
+    }
+}
+
+@keyframes rainbowzBorders{
+    0% {border-color: red;}
+    7% {border-color: orange;}
+    15% {border-color: yellow;}
+    22% {border-color: rgb(7, 219, 7);}
+    30% {border-color: rgb(0, 153, 255);}
+    37% {border-color: rgb(255, 0, 221);}
+    45% {border-color: violet;}
+    53% {border-color: violet;}
+    60% {border-color: rgb(255, 0, 221);}
+    67% {border-color: rgb(0, 153, 255);}
+    75% {border-color: rgb(7, 219, 7);}
+    83% {border-color: yellow;}
+    91% {border-color: orange;}
+    100% {border-color: red;}
 }
 
 @keyframes rainbowz {
@@ -121,7 +145,7 @@ html, body {
 }
 
 body {
-    background-color: rgb(30, 33, 37);
+    background-color: rgb(36, 36, 36);
     max-width: 100%;
     overflow-x: hidden;
 }
