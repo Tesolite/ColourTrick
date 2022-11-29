@@ -29,11 +29,11 @@ function showProfile(){
     document.getElementById("userProfile").style.display = "initial";
     document.getElementById("profileUsername").innerHTML = document.getElementById("profileUsername").innerHTML + localStorage.getItem("username");
 
-    if(localStorage.getItem("score") == null){
+    if(localStorage.getItem("highscore") == null){
         document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + "0";
     }
     else{
-    document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + localStorage.getItem("score");
+    document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + localStorage.getItem("highscore");
     }
     
 }
@@ -231,20 +231,20 @@ function startGame() {
                     colour = "red";
                     document.getElementById("main").innerHTML = word;
                     document.getElementById("main").style.color = colour;
-                    if(localStorage.getItem("score") == null){
-                        localStorage.setItem("score",score);
+                    if(localStorage.getItem("highscore") == null){
+                        localStorage.setItem("highscore",score);
                     }
                     else{
-                        if(localStorage.getItem("score") < score){
-                            localStorage.setItem("score", score);
+                        if(localStorage.getItem("highscore") < score){
+                            localStorage.setItem("highscore", score);
                         }
                     }
-                    alert("Highscore is: " + localStorage.getItem("score"));
+                    alert("Highscore is: " + localStorage.getItem("highscore"));
                     continueGame = 0;
                     document.removeEventListener("keydown", registerInput, true);
                     document.getElementById("retryButton").style.display = "initial";
                     document.getElementById("homeButton").style.display = "initial";
-                    alert(localStorage.getItem("username") + " highscore: " + localStorage.getItem("score"));
+                    alert(localStorage.getItem("username") + " highscore: " + localStorage.getItem("highscore"));
                 }
             }
         }, true);
