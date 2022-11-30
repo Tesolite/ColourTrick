@@ -31,13 +31,13 @@ function showProfile() {
     }
     else {
         document.getElementById("userProfile").style.display = "initial";
-        document.getElementById("profileUsername").innerHTML = document.getElementById("profileUsername").innerHTML + localStorage.getItem("username");
+        document.getElementById("profileUsername").innerHTML = "User ID: " + localStorage.getItem("username");
 
         if (localStorage.getItem("highscore") == null) {
-            document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + "0";
+            document.getElementById("profileHighscore").innerHTML = "Highscore: 0";
         }
         else {
-            document.getElementById("profileHighscore").innerHTML = document.getElementById("profileHighscore").innerHTML + localStorage.getItem("highscore");
+            document.getElementById("profileHighscore").innerHTML = "Highscore: " + localStorage.getItem("highscore");
         }
     }
 
