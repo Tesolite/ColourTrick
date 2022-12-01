@@ -81,7 +81,6 @@
     align-self:center;
     padding: 5%;
     flex-direction: column;
-    border-radius: 15px;
     border: 2px solid rgba(0, 0, 0, 0.25);
     box-shadow: 0px 0px 13px 7px rgba(0, 0, 0, 0.10);
 }
@@ -94,7 +93,7 @@
     animation: rainbowz 10s infinite;
 }
 
-#saveUsername{
+.profileButton{
     margin: 5px;
     padding: 7px 20px;
     color: black;
@@ -107,13 +106,13 @@
     text-align: center;
     cursor: pointer;
 }
-#saveUsername:hover{
+.profileButton:hover{
     background: linear-gradient(rgba(231, 241, 246, 0.05), rgba(68, 67, 67, 0.75));
     animation: changeColour 1s, changeTextWhite 0.25s, rainbowzBorders 10s infinite;
     animation-fill-mode: forwards;
 }
 
-#saveUsername:active{
+.profileButton:active{
     background: rgb(109, 109, 109);
 }
 
@@ -130,7 +129,6 @@
     align-self:center;
     padding: 5%;
     flex-direction: column;
-    border-radius: 15px;
     border: 2px solid rgba(0, 0, 0, 0.25);
     box-shadow: 0px 0px 13px 7px rgba(0, 0, 0, 0.10);
     color: white;

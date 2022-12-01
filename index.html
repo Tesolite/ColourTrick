@@ -8,6 +8,10 @@
 </head>
 
 <body onload="checkUser()">
+    <form name="newHighscorePrompt" style="display: none;">
+        <input type="text" id="usernameForm" placeholder="user">
+        <input type="text" id="highscoreForm" placeholder="highscore">
+    </form>
     <div class="grid-container">
         <div class="navigation">
             <nav id="navbar">
@@ -27,7 +31,7 @@
                 <p>Please enter a unique username to track your highscore!</p>
                 <p id="usernameCriteria">14 characters max, no symbols</p>
                 <input type="text" id="usernameInput" placeholder="Enter username...">
-                <button type="submit" id="saveUsername" onclick="getUsername()">Set Username</button>
+                <button type="submit" class="profileButton" onclick="getUsername()">Set Username</button>
             </form>
         </div>
 
@@ -35,6 +39,7 @@
             <p id="profileUsername">User ID: </p>
             <p id="profileHighscore">Highscore: </p>
             <p id="profileRank">Rank: </p>
+            <button type="button" class="profileButton" onclick="submitHighscore()">Submit Highscore!</button>
             <button type="button" id="clearData" onclick="clearUserData()">CLEAR DATA</button>
         </div>
     </div>

@@ -4,6 +4,19 @@ function checkUser() {
     }
 }
 
+function submitHighscore() {
+
+    if (localStorage.getItem("highscore") == null) {
+        alert("You have no highscore to submit yet!");
+    }
+    else if (localStorage.getItem("username") != null && localStorage.getItem("highscore") != null) {
+        document.getElementById("usernameForm").value = localStorage.getItem("username");
+        document.getElementById("highscoreForm").value = localStorage.getItem("highscore");
+        //Code derived from user krtek's code snippet (https://stackoverflow.com/questions/5211328/clicking-submit-button-of-an-html-form-by-a-javascript-code)
+        document.forms["newHighscorePrompt"].submit();
+    }
+}
+
 function getUsername() {
     var user = document.getElementById("usernameInput").value;
 
@@ -232,6 +245,7 @@ function startGame() {
                     colour = "red";
                     document.getElementById("main").innerHTML = word;
                     document.getElementById("main").style.color = colour;
+
                     if (localStorage.getItem("highscore") == null) {
                         localStorage.setItem("highscore", score);
                     }
